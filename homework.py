@@ -11,16 +11,14 @@ class InfoMessage:
     distance: float
     speed: float
     calories: float
-    messages: str = ''
+    MESSGAES: str = ('Тип тренировки: {training_type:}; '
+                     'Длительность: {duration:.3f} ч.; '
+                     'Дистанция: {distance:.3f} км; '
+                     'Ср. скорость: {speed:.3f} км/ч; '
+                     'Потрачено ккал: {calories:.3f}.')
 
     def get_message(self) -> str:
-        self.message = ('Тип тренировки: {training_type:}; '
-                        'Длительность: {duration:.3f} ч.; '
-                        'Дистанция: {distance:.3f} км; '
-                        'Ср. скорость: {speed:.3f} км/ч; '
-                        'Потрачено ккал: {calories:.3f}.'
-                        .format(**asdict(self)))
-        return self.message
+        return self.MESSGAES.format(**asdict(self))
 
 
 class Training:
@@ -128,7 +126,6 @@ class Swimming(Training):
 
 def read_package(workout_type: str, data: list) -> Training:
     """Прочитать данные полученные от датчиков."""
-
     workout_dict: Dict[str, Training] = {
         'SWM': Swimming,
         'RUN': Running,
